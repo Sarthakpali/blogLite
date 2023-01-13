@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="card signUP mb-3">
+        <div class="card-header d-flex flex-row">
+        <img class="rounded-circle account-img" src="{{ url_for('static', filename = 'images/' + blog.user.profile_pic) }}" style="width: 50px;height:50px;border-radius: 100%;">
+        <h6 class="card-subtitle my-1 text-muted p-2">{{ blog.user.user_name}}</h6> 
+        <h6 class="card-subtitle my-1 text-muted p-2 ms-auto">{{ blog.created_at.strftime('%Y-%m-%d') }}</h6> 
+        </div>
+        <div class="card-body d-flex flex-row">
+        <div>
+            <h5 class="card-title">{{ blog.blog_title }}</h5>
+            <p class="card-text">{{ blog.blog_body }}</p>
+        </div>
+            {% if current_user.user_id == blog.user_id %}
+                <div class="btn-group ms-auto">  
+                    <button type="button" class="btn dropdown-toggle btn-light" data-bs-toggle="dropdown"></button>
+                    <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{{ url_for('editBlog', blog_id = blog.blog_id)}}">Edit</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('deleteBlog', blog_id = blog.blog_id)}}">Delete</a></li>
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock content %}

@@ -1,1 +1,18 @@
 {% extends "layout.html" %}
+{% block content %}
+    {% for blog in blogs %}
+            <div class="card signUP mb-3">
+                <div class="card-header d-flex flex-row">
+                  <img class="rounded-circle account-img" src="{{ url_for('static', filename = 'images/' + blog.user.profile_pic) }}" style="width: 50px;height:50px;border-radius: 100%;">
+                  <h6 class="card-subtitle my-1 text-muted p-2">{{ blog.user.user_name}}</h6> 
+                  <h6 class="card-subtitle my-1 text-muted p-2 ms-auto">{{ blog.created_at.strftime('%Y-%m-%d') }}</h6> 
+                </div>
+                <div class="card-body d-flex flex-row">
+                  <div>
+                    <h5 class="card-title"><a class="nav-link active" href="{{url_for('blog', blog_id = blog.blog_id)}}">{{ blog.blog_title }}</a></h5>
+                    <p class="card-text">{{ blog.blog_body }}</p>
+                  </div>
+                </div>
+            </div>
+    {% endfor %}
+{% endblock content %}

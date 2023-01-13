@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class = "card signUP mr-4">
+    <!-- </div class="mt-2">     -->
+        <legend class="my-4 mx-4">New Blog!</legend>
+        <form action = '', method = "POST">
+            {{ form.csrf_token }}
+            {{ form.hidden_tag() }}
+            <div class="mb-4 mx-4">
+                <label class="form-label">Title</label>
+                {% if form.blog_title.errors %}
+                    {{ form.blog_title(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.blog_title.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                {% else %}
+                    {{ form.blog_title(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="mb-4 mx-4">
+                <label class="form-label">Body</label>
+                {% if form.blog_body.errors %}
+                    {{ form.blog_body(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.blog_body.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                {% else %}
+                    {{ form.blog_body(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group mb-4">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    <!-- </div> -->
+</div>
+{% endblock content %}

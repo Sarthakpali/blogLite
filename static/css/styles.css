@@ -1,5 +1,21 @@
-body{
+*{
+    border-radius: 0px;
+}
+nav, aside, main{
+    /* border: 1px solid red; */
     /* background-color: aquamarine; */
+}
+
+.signUP{
+    /* padding-right: 25%; */
+    margin-right: 250px;
+}
+
+.sidebar{
+    margin-left: 200px;
+}
+.mybody{
+    padding-left: 0px;
 }
 .signlog{
     padding-right: 15%;

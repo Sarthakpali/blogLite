@@ -1,1 +1,44 @@
 {% extends "layout.html" %}
+{% block content%}
+    <div class = "card signUP mr-4">
+        <legend class="my-4 mx-4">Log in</legend>
+        <form action="", method="POST">
+            {{ form.csrf_token }}
+            {{ form.hidden_tag() }}
+            <div class="mb-4 mx-4">
+                <label class="form-label">User Name</label>
+                {% if form.user_name.errors %}
+                    {{ form.user_name(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.user_name.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                {% else %}
+                    {{ form.user_name(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="mb-4 mx-4">
+                <label class="form-label">Password</label>
+                {% if form.password.errors %}
+                    {{ form.password(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                {% else %}
+                    {{ form.password(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="mx-4 mb-4 form-check">
+                {{ form.remember(class="form-check-input") }}
+                {{ form.remember.label(class="form-check-label") }}
+            </div>
+            <div class="mx-4 mb-4 form-group">
+                {{ form.submit(class = "btn btn-outline-info")}}
+            </div>
+        </form>
+    </div>
+
+{% endblock content %}
