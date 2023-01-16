@@ -14,9 +14,9 @@ def newBlog():
     else:
         try:
             if form.validate_on_submit():
-                # print("H")
                 blog = Blog(blog_title = form.blog_title.data, blog_body = form.blog_body.data, user = current_user)
                 db.session.add(blog)
+                current_user.posts = current_user.posts + 1
                 db.session.commit()
                 flash('New blog posted successfully.', 'success')
                 return redirect(url_for('home'))
@@ -61,6 +61,8 @@ def deleteBlog(blog_id):
         abort(403)
     try:
         db.session.delete(blog)
+        if current_user.posts > 0:
+            current_user.posts = current_user.posts - 1
         db.session.commit()
         flash('Blog deleted successfully.', 'success')
         return redirect(url_for('home'))
@@ -74,6 +76,13 @@ def deleteBlog(blog_id):
 def blog(blog_id):
     blog = Blog.query.get_or_404(blog_id)
     return render_template('blog.html', title = blog.blog_title, blog = blog)
+
+@app.route('/userBlogs')
+@login_required
+def userBlogs():
+    user = current_user
+    blogs = Blog.query.filter_by(user_id = current_user.user_id)
+    return render_template('userBlogs.html', title = 'User Blog' , blogs = blogs)
 
 
 

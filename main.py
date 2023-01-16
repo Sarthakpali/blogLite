@@ -2,11 +2,9 @@ import os
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Api 
-from dotenv import load_dotenv
 from application.config import LocalDevelopmentConfig
 from application.database import db, ma, login_manager
-# from userController import *
-load_dotenv()
+
 
 app = Flask(__name__,  template_folder = "templates")
 

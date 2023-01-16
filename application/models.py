@@ -44,10 +44,25 @@ class Blog(db.Model):
     blog_title = db.Column(db.String)
     blog_body = db.Column(db.String)
     created_at = db.Column(db.DateTime, default = datetime.utcnow)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.user_id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.user_id'), nullable = False)
 
     def __repr__(self):
         return f"Blog('{self.blog_title}', '{self.created_at}')"
+
+class Follower(db.Model):
+    __tablename__ = 'follower'
+    follower_id = db.Column(db.Integer, primary_key = True, autoincrement = True, unique = True, index = True)
+    follower_user_id = db.Column(db.Integer)
+    follower_user_name = db.Column(db.String)
+    user_id = db.Column(db.Integer)
+
+class Following(db.Model):
+    __tablename__ = 'following'
+    following_id = db.Column(db.Integer, primary_key = True, autoincrement = True, unique = True, index = True)
+    following_user_id = db.Column(db.Integer)
+    following_user_name = db.Column(db.String)
+    user_id = db.Column(db.Integer)
+
 
 
 

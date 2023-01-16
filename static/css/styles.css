@@ -6,6 +6,9 @@ nav, aside, main{
     /* background-color: aquamarine; */
 }
 
+.searchBar{
+    padding-left: 250px;
+}
 .signUP{
     /* padding-right: 25%; */
     margin-right: 250px;

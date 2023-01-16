@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class = "card signUP mr-4">
+        <legend class="mt-4 mx-4">User Profile!</legend>
+        <div class="d-flex flex-row mb-2">
+            <img class="ms-2 me-4" src="{{ url_for('static', filename = 'images/' + user.profile_pic) }}" style="width: 100px; height: 100px; border-radius: 100%;">
+            <div class="p-2 col ms-2">
+                <h6 class="text-center">Followers</h6>
+                <p class="text-center">{{ user.followers}}</p>
+            </div>
+            <div class="p-2 col text-center">
+                <h6 class="text-center">Following</h6>
+                <p class="text-center">{{ user.following }}</p>
+            </div>
+            <div class="p-2 col">
+                <h6 class="text-center">Posts</h6>
+                <p class="text-center">{{ user.posts }}</p>
+            </div>
+        </div>
+        <h6 class="ms-4">{{ user.first_name.capitalize()}}&nbsp;{{ user.last_name.capitalize() }}</h6>
+        <form>
+            <div class="form-group mb-4">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+</div>
+{% endblock content %}
